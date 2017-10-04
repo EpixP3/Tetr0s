@@ -1,2 +1,2 @@
-#Tetr0s
-###Classic Tetris - BUT BETTER!
+# Tetr0s
+### Classic Tetris - BUT BETTER!
