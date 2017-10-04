@@ -26,7 +26,7 @@ public class MainThread extends Thread {
     public void setRunning(boolean running){
         this.running = running;
     }
-    
+
     @Override
     public void run(){
         long startTime;
