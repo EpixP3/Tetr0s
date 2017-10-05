@@ -36,12 +36,6 @@ public class MainThread extends Thread {
 
 
 
-
-
-
-
-
-
         //###########REGULACIJA FRAMOVA###########
         long startTime;
         long timeMilis = 1000/MAX_FPS;
@@ -93,6 +87,6 @@ public class MainThread extends Thread {
 
         //########KRAJ REGULACIJE FRAMOVA############
 
-
+        
     }
 }

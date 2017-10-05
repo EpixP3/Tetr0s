@@ -96,46 +96,50 @@ public class Tetrengine extends SurfaceView implements SurfaceHolder.Callback{
         blockSide = gridWidth/10;
         gridHeight = blockSide*22;
 
+
+
         //UPDATUJE BLOKOVE
         for(int i=0; i < 22; i++){
             for(int j=0; j < 10; j++){
+
                 if(Map[i][j] == 1){
-                    new Block(new Point((int)(gridX*blockSide+j*blockSide), (int)(gridY*blockSide+i*blockSide)), Color.CYAN, blockSide).draw(canvas);
+                    new Block(new Point((int)(gridX*blockSide+j*blockSide), (int)(gridY*blockSide+i*blockSide)), Color.CYAN, blockSide, getContext()).draw(canvas);
                 }
-                if(Map[i][j] == 2){
-                    new Block(new Point((int)(gridX*blockSide+j*blockSide), (int)(gridY*blockSide+i*blockSide)), Color.YELLOW, blockSide).draw(canvas);
+                else if(Map[i][j] == 2){
+                    new Block(new Point((int)(gridX*blockSide+j*blockSide), (int)(gridY*blockSide+i*blockSide)), Color.YELLOW, blockSide, getContext()).draw(canvas);
                 }
-                if(Map[i][j] == 3){
-                    new Block(new Point((int)(gridX*blockSide+j*blockSide), (int)(gridY*blockSide+i*blockSide)), Color.MAGENTA, blockSide).draw(canvas);
+                else if(Map[i][j] == 3){
+                    new Block(new Point((int)(gridX*blockSide+j*blockSide), (int)(gridY*blockSide+i*blockSide)), Color.MAGENTA, blockSide, getContext()).draw(canvas);
                 }
-                if(Map[i][j] == 4){
-                    new Block(new Point((int)(gridX*blockSide+j*blockSide), (int)(gridY*blockSide+i*blockSide)), Color.GREEN, blockSide).draw(canvas);
+                else if(Map[i][j] == 4){
+                    new Block(new Point((int)(gridX*blockSide+j*blockSide), (int)(gridY*blockSide+i*blockSide)), Color.GREEN, blockSide, getContext()).draw(canvas);
                 }
-                if(Map[i][j] == 5){
-                    new Block(new Point((int)(gridX*blockSide+j*blockSide), (int)(gridY*blockSide+i*blockSide)), Color.RED, blockSide).draw(canvas);
+                else if(Map[i][j] == 5){
+                    new Block(new Point((int)(gridX*blockSide+j*blockSide), (int)(gridY*blockSide+i*blockSide)), Color.RED, blockSide, getContext()).draw(canvas);
                 }
-                if(Map[i][j] == 6){
-                    new Block(new Point((int)(gridX*blockSide+j*blockSide), (int)(gridY*blockSide+i*blockSide)), Color.BLUE, blockSide).draw(canvas);
+                else if(Map[i][j] == 6){
+                    new Block(new Point((int)(gridX*blockSide+j*blockSide), (int)(gridY*blockSide+i*blockSide)), Color.BLUE, blockSide, getContext()).draw(canvas);
                 }
-                if(Map[i][j] == 7){
-                    new Block(new Point((int)(gridX*blockSide+j*blockSide), (int)(gridY*blockSide+i*blockSide)), Color.rgb(255, 127, 0), blockSide).draw(canvas);
+                else if(Map[i][j] == 7){
+                    new Block(new Point((int)(gridX*blockSide+j*blockSide), (int)(gridY*blockSide+i*blockSide)), Color.rgb(255, 127, 0), blockSide, getContext()).draw(canvas);
+                }
+                else{
+                    new Block(new Point((int)(gridX*blockSide+j*blockSide), (int)(gridY*blockSide+i*blockSide)), Color.WHITE, blockSide, getContext()).draw(canvas);
                 }
             }
         }
 
-        //GRID
-        for(int i=0; i < 22; i++) {
-            for (int j = 0; j < 10; j++) {
-                Paint paint = new Paint();
-                float leftx = (float)(gridX+j) * blockSide;
-                float topy = (float)(gridY+i) * blockSide;
-                float rightx = leftx + blockSide;
-                float bottomy = topy + blockSide;
-                paint.setStrokeWidth(2);
-                paint.setColor(Color.LTGRAY);
-                paint.setStyle(Paint.Style.STROKE);
-                canvas.drawRect(leftx, topy, rightx, bottomy, paint);
-            }
-        }
+        //BORDER
+        Paint paint = new Paint();
+        float leftx = (float)(gridX) * blockSide;
+        float topy = (float)(gridY) * blockSide;
+        float rightx = (float)(gridX) * blockSide+gridWidth;
+        float bottomy = (float)(gridY) * blockSide+gridHeight;
+        paint.setStrokeWidth(5);
+        paint.setColor(Color.BLACK);
+        paint.setStyle(Paint.Style.STROKE);
+        canvas.drawRect(leftx, topy, rightx, bottomy, paint);
+
+
     }
 }
