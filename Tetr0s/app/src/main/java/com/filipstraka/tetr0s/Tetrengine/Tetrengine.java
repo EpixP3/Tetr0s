@@ -19,7 +19,8 @@ public class Tetrengine extends SurfaceView implements SurfaceHolder.Callback{
     double gridX = 3.5;
     double gridY = 1;
     /*
-    * 10x22 ORIGINAL TETRIS MATRICA
+    * #####10x22 ORIGINAL TETRIS MATRICA#####
+    * #####RED 0 I 1 SE NE RENDERUJU######
     * 0 - PRAZNO POLJE
     * 1 - I (CYAN)
     * 2 - O (ZUTA)
@@ -29,9 +30,9 @@ public class Tetrengine extends SurfaceView implements SurfaceHolder.Callback{
     * 6 - J (PLAVA)
     * 7 - L (NARANDZASTA)
      */
-    public int[][] Map = {{1,1,2,3,4,5,6,7,0,1},
+    public int[][] Map = {{0,0,0,0,0,0,0,0,0,0},
                    {0,0,0,0,0,0,0,0,0,0},
-                   {0,0,0,0,0,0,0,0,0,0},
+                   {1,1,2,3,4,5,6,7,0,1},
                    {0,0,0,0,0,0,0,0,0,0},
                    {0,0,0,0,0,0,0,0,0,0},
                    {0,0,0,0,0,0,0,0,0,0},
@@ -94,37 +95,37 @@ public class Tetrengine extends SurfaceView implements SurfaceHolder.Callback{
         canvasWidth = canvas.getWidth();
         gridWidth = (canvasWidth /5)*3;
         blockSide = gridWidth/10;
-        gridHeight = blockSide*22;
+        gridHeight = blockSide*20;
 
 
 
         //UPDATUJE BLOKOVE
-        for(int i=0; i < 22; i++){
+        for(int i=2; i < 22; i++){
             for(int j=0; j < 10; j++){
 
                 if(Map[i][j] == 1){
-                    new Block(new Point((int)(gridX*blockSide+j*blockSide), (int)(gridY*blockSide+i*blockSide)), Color.CYAN, blockSide, getContext()).draw(canvas);
+                    new Block(new Point((int)(gridX*blockSide+j*blockSide), (int)(gridY*blockSide+(i-2)*blockSide)), Color.CYAN, blockSide, getContext()).draw(canvas);
                 }
                 else if(Map[i][j] == 2){
-                    new Block(new Point((int)(gridX*blockSide+j*blockSide), (int)(gridY*blockSide+i*blockSide)), Color.YELLOW, blockSide, getContext()).draw(canvas);
+                    new Block(new Point((int)(gridX*blockSide+j*blockSide), (int)(gridY*blockSide+(i-2)*blockSide)), Color.YELLOW, blockSide, getContext()).draw(canvas);
                 }
                 else if(Map[i][j] == 3){
-                    new Block(new Point((int)(gridX*blockSide+j*blockSide), (int)(gridY*blockSide+i*blockSide)), Color.MAGENTA, blockSide, getContext()).draw(canvas);
+                    new Block(new Point((int)(gridX*blockSide+j*blockSide), (int)(gridY*blockSide+(i-2)*blockSide)), Color.MAGENTA, blockSide, getContext()).draw(canvas);
                 }
                 else if(Map[i][j] == 4){
-                    new Block(new Point((int)(gridX*blockSide+j*blockSide), (int)(gridY*blockSide+i*blockSide)), Color.GREEN, blockSide, getContext()).draw(canvas);
+                    new Block(new Point((int)(gridX*blockSide+j*blockSide), (int)(gridY*blockSide+(i-2)*blockSide)), Color.GREEN, blockSide, getContext()).draw(canvas);
                 }
                 else if(Map[i][j] == 5){
-                    new Block(new Point((int)(gridX*blockSide+j*blockSide), (int)(gridY*blockSide+i*blockSide)), Color.RED, blockSide, getContext()).draw(canvas);
+                    new Block(new Point((int)(gridX*blockSide+j*blockSide), (int)(gridY*blockSide+(i-2)*blockSide)), Color.RED, blockSide, getContext()).draw(canvas);
                 }
                 else if(Map[i][j] == 6){
-                    new Block(new Point((int)(gridX*blockSide+j*blockSide), (int)(gridY*blockSide+i*blockSide)), Color.BLUE, blockSide, getContext()).draw(canvas);
+                    new Block(new Point((int)(gridX*blockSide+j*blockSide), (int)(gridY*blockSide+(i-2)*blockSide)), Color.BLUE, blockSide, getContext()).draw(canvas);
                 }
                 else if(Map[i][j] == 7){
-                    new Block(new Point((int)(gridX*blockSide+j*blockSide), (int)(gridY*blockSide+i*blockSide)), Color.rgb(255, 127, 0), blockSide, getContext()).draw(canvas);
+                    new Block(new Point((int)(gridX*blockSide+j*blockSide), (int)(gridY*blockSide+(i-2)*blockSide)), Color.rgb(255, 127, 0), blockSide, getContext()).draw(canvas);
                 }
                 else{
-                    new Block(new Point((int)(gridX*blockSide+j*blockSide), (int)(gridY*blockSide+i*blockSide)), Color.WHITE, blockSide, getContext()).draw(canvas);
+                    new Block(new Point((int)(gridX*blockSide+j*blockSide), (int)(gridY*blockSide+(i-2)*blockSide)), Color.WHITE, blockSide, getContext()).draw(canvas);
                 }
             }
         }

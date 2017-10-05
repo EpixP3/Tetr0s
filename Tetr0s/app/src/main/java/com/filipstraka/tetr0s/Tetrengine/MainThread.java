@@ -1,8 +1,6 @@
 package com.filipstraka.tetr0s.Tetrengine;
 
 import android.graphics.Canvas;
-import android.provider.Settings;
-import android.util.Log;
 import android.view.SurfaceHolder;
 
 /**
@@ -87,6 +85,6 @@ public class MainThread extends Thread {
 
         //########KRAJ REGULACIJE FRAMOVA############
 
-        
+
     }
 }
