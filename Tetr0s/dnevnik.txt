@@ -10,3 +10,4 @@ Dodata ikonica
 22:59 05.10.2017.
 Unapredjen renderer
 Zapocet rad na MainThread-u
+Obrisan visak biblioteka(sa 12mb na 580kb)
