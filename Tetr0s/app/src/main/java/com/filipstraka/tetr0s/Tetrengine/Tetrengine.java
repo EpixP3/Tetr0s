@@ -30,7 +30,7 @@ public class Tetrengine extends SurfaceView implements SurfaceHolder.Callback{
     * 6 - J (PLAVA)
     * 7 - L (NARANDZASTA)
      */
-    public int[][] Map = {{0,0,0,0,0,0,0,0,0,0},
+    public int[][] Map = {{0,0,0,0,0,0,0,0,0,0}, //(y,x) a ne (x,y)
                    {0,0,0,0,0,0,0,0,0,0},
                    {1,1,2,3,4,5,6,7,0,1},
                    {0,0,0,0,0,0,0,0,0,0},
