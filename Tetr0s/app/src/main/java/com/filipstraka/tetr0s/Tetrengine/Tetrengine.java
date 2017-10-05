@@ -2,6 +2,8 @@ package com.filipstraka.tetr0s.Tetrengine;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Point;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -12,6 +14,41 @@ import android.view.SurfaceView;
 
 public class Tetrengine extends SurfaceView implements SurfaceHolder.Callback{
     MainThread thread;
+    int canvasHeight, canvasWidth, gridHeight, gridWidth, blockSide;
+    /*
+    * 10x22 ORIGINAL TETRIS MATRICA
+    * 0 - PRAZNO POLJE
+    * 1 - I (CYAN)
+    * 2 - O (ZUTA)
+    * 3 - T (MAGENTA)
+    * 4 - S (ZELENA)
+    * 5 - Z (CRVENA)
+    * 6 - J (PLAVA)
+    * 7 - L (NARANDZASTA)
+     */
+    int[][] Map = {{0,1,2,3,4,5,6,7,0,0},
+                   {0,0,0,0,0,0,0,0,0,0},
+                   {0,0,0,0,0,0,0,0,0,0},
+                   {0,0,0,0,0,0,0,0,0,0},
+                   {0,0,0,0,0,0,0,0,0,0},
+                   {0,0,0,0,0,0,0,0,0,0},
+                   {0,0,0,0,0,0,0,0,0,0},
+                   {0,0,0,0,0,0,0,0,0,0},
+                   {0,0,0,0,0,0,0,0,0,0},
+                   {0,0,0,0,0,0,0,0,0,0},
+                   {0,0,0,0,0,0,0,0,0,0},
+                   {0,0,0,0,0,0,0,0,0,0},
+                   {0,0,0,0,0,0,0,0,0,0},
+                   {0,0,0,0,0,0,0,0,0,0},
+                   {0,0,0,0,0,0,0,0,0,0},
+                   {0,0,0,0,0,0,0,0,0,0},
+                   {0,0,0,0,0,0,0,0,0,0},
+                   {0,0,0,0,0,0,0,0,0,0},
+                   {0,0,0,0,0,0,0,0,0,0},
+                   {0,0,0,0,0,0,0,0,0,0},
+                   {0,0,0,0,0,0,0,0,0,0},
+                   {0,0,0,0,0,0,0,0,0,0}};
+
     public Tetrengine(Context context){
         super(context);
         getHolder().addCallback(this);
@@ -39,11 +76,46 @@ public class Tetrengine extends SurfaceView implements SurfaceHolder.Callback{
     }
     @Override
     public boolean onTouchEvent (MotionEvent event){
-        return super.onTouchEvent(event);
 
+        return true;
+        //return super.onTouchEvent(event);
     }
     @Override
     public void draw(Canvas canvas){
         super.draw(canvas);
+
+        //RELATIVNE KALKULACIJE SAMO DA BUDE U ODNOSIMA NE U PIXELIMA
+        //DA BI RADILO I NA DRUGIM REZOLUCIJAMA I OSTALIM UREDJAJIMA
+        canvasHeight = canvas.getHeight();
+        canvasWidth = canvas.getWidth();
+        gridWidth = (canvasWidth /5)*3;
+        blockSide = gridWidth/10;
+        gridHeight = blockSide*22;
+
+        for(int i=0; i < 22; i++){
+            for(int j=0; j < 10; j++){
+                if(Map[i][j] == 1){
+                    new Block(new Point(j*blockSide, i*blockSide), Color.CYAN, blockSide).draw(canvas);
+                }
+                if(Map[i][j] == 2){
+                    new Block(new Point(j*blockSide, i*blockSide), Color.YELLOW, blockSide).draw(canvas);
+                }
+                if(Map[i][j] == 3){
+                    new Block(new Point(j*blockSide, i*blockSide), Color.MAGENTA, blockSide).draw(canvas);
+                }
+                if(Map[i][j] == 4){
+                    new Block(new Point(j*blockSide, i*blockSide), Color.GREEN, blockSide).draw(canvas);
+                }
+                if(Map[i][j] == 5){
+                    new Block(new Point(j*blockSide, i*blockSide), Color.RED, blockSide).draw(canvas);
+                }
+                if(Map[i][j] == 6){
+                    new Block(new Point(j*blockSide, i*blockSide), Color.BLUE, blockSide).draw(canvas);
+                }
+                if(Map[i][j] == 7){
+                    new Block(new Point(j*blockSide, i*blockSide), Color.rgb(255, 127, 0), blockSide).draw(canvas);
+                }
+            }
+        }
     }
 }
