@@ -3,6 +3,7 @@ package com.filipstraka.tetr0s.Tetrengine;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Point;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -15,6 +16,8 @@ import android.view.SurfaceView;
 public class Tetrengine extends SurfaceView implements SurfaceHolder.Callback{
     MainThread thread;
     int canvasHeight, canvasWidth, gridHeight, gridWidth, blockSide;
+    double gridX = 3.5;
+    double gridY = 1;
     /*
     * 10x22 ORIGINAL TETRIS MATRICA
     * 0 - PRAZNO POLJE
@@ -26,7 +29,7 @@ public class Tetrengine extends SurfaceView implements SurfaceHolder.Callback{
     * 6 - J (PLAVA)
     * 7 - L (NARANDZASTA)
      */
-    int[][] Map = {{0,1,2,3,4,5,6,7,0,0},
+    public int[][] Map = {{1,1,2,3,4,5,6,7,0,1},
                    {0,0,0,0,0,0,0,0,0,0},
                    {0,0,0,0,0,0,0,0,0,0},
                    {0,0,0,0,0,0,0,0,0,0},
@@ -47,7 +50,7 @@ public class Tetrengine extends SurfaceView implements SurfaceHolder.Callback{
                    {0,0,0,0,0,0,0,0,0,0},
                    {0,0,0,0,0,0,0,0,0,0},
                    {0,0,0,0,0,0,0,0,0,0},
-                   {0,0,0,0,0,0,0,0,0,0}};
+                   {1,0,0,0,0,0,0,0,0,1}};
 
     public Tetrengine(Context context){
         super(context);
@@ -83,6 +86,7 @@ public class Tetrengine extends SurfaceView implements SurfaceHolder.Callback{
     @Override
     public void draw(Canvas canvas){
         super.draw(canvas);
+        canvas.drawColor(Color.WHITE);
 
         //RELATIVNE KALKULACIJE SAMO DA BUDE U ODNOSIMA NE U PIXELIMA
         //DA BI RADILO I NA DRUGIM REZOLUCIJAMA I OSTALIM UREDJAJIMA
@@ -92,29 +96,45 @@ public class Tetrengine extends SurfaceView implements SurfaceHolder.Callback{
         blockSide = gridWidth/10;
         gridHeight = blockSide*22;
 
+        //UPDATUJE BLOKOVE
         for(int i=0; i < 22; i++){
             for(int j=0; j < 10; j++){
                 if(Map[i][j] == 1){
-                    new Block(new Point(j*blockSide, i*blockSide), Color.CYAN, blockSide).draw(canvas);
+                    new Block(new Point((int)(gridX*blockSide+j*blockSide), (int)(gridY*blockSide+i*blockSide)), Color.CYAN, blockSide).draw(canvas);
                 }
                 if(Map[i][j] == 2){
-                    new Block(new Point(j*blockSide, i*blockSide), Color.YELLOW, blockSide).draw(canvas);
+                    new Block(new Point((int)(gridX*blockSide+j*blockSide), (int)(gridY*blockSide+i*blockSide)), Color.YELLOW, blockSide).draw(canvas);
                 }
                 if(Map[i][j] == 3){
-                    new Block(new Point(j*blockSide, i*blockSide), Color.MAGENTA, blockSide).draw(canvas);
+                    new Block(new Point((int)(gridX*blockSide+j*blockSide), (int)(gridY*blockSide+i*blockSide)), Color.MAGENTA, blockSide).draw(canvas);
                 }
                 if(Map[i][j] == 4){
-                    new Block(new Point(j*blockSide, i*blockSide), Color.GREEN, blockSide).draw(canvas);
+                    new Block(new Point((int)(gridX*blockSide+j*blockSide), (int)(gridY*blockSide+i*blockSide)), Color.GREEN, blockSide).draw(canvas);
                 }
                 if(Map[i][j] == 5){
-                    new Block(new Point(j*blockSide, i*blockSide), Color.RED, blockSide).draw(canvas);
+                    new Block(new Point((int)(gridX*blockSide+j*blockSide), (int)(gridY*blockSide+i*blockSide)), Color.RED, blockSide).draw(canvas);
                 }
                 if(Map[i][j] == 6){
-                    new Block(new Point(j*blockSide, i*blockSide), Color.BLUE, blockSide).draw(canvas);
+                    new Block(new Point((int)(gridX*blockSide+j*blockSide), (int)(gridY*blockSide+i*blockSide)), Color.BLUE, blockSide).draw(canvas);
                 }
                 if(Map[i][j] == 7){
-                    new Block(new Point(j*blockSide, i*blockSide), Color.rgb(255, 127, 0), blockSide).draw(canvas);
+                    new Block(new Point((int)(gridX*blockSide+j*blockSide), (int)(gridY*blockSide+i*blockSide)), Color.rgb(255, 127, 0), blockSide).draw(canvas);
                 }
+            }
+        }
+
+        //GRID
+        for(int i=0; i < 22; i++) {
+            for (int j = 0; j < 10; j++) {
+                Paint paint = new Paint();
+                float leftx = (float)(gridX+j) * blockSide;
+                float topy = (float)(gridY+i) * blockSide;
+                float rightx = leftx + blockSide;
+                float bottomy = topy + blockSide;
+                paint.setStrokeWidth(2);
+                paint.setColor(Color.LTGRAY);
+                paint.setStyle(Paint.Style.STROKE);
+                canvas.drawRect(leftx, topy, rightx, bottomy, paint);
             }
         }
     }

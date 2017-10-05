@@ -29,6 +29,20 @@ public class MainThread extends Thread {
 
     @Override
     public void run(){
+        //RUN
+        //Poziva se 60 puta u sekundi (tako bi trebalo ako nisam nista za-j...)
+
+
+
+
+
+
+
+
+
+
+
+        //###########REGULACIJA FRAMOVA###########
         long startTime;
         long timeMilis = 1000/MAX_FPS;
         long waitTime;
@@ -76,5 +90,9 @@ public class MainThread extends Thread {
                 frameCount = 0;
             }
         }
+
+        //########KRAJ REGULACIJE FRAMOVA############
+
+
     }
 }
