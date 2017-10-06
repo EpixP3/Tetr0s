@@ -103,7 +103,9 @@ public class Tetrengine extends SurfaceView implements SurfaceHolder.Callback{
         for(int i=2; i < 22; i++){
             for(int j=0; j < 10; j++){
 
-                if(Map[i][j] == 1){
+                if (Map[i][j] == 0){
+                }
+                else if(Map[i][j] == 1){
                     new Block(new Point((int)(gridX*blockSide+j*blockSide), (int)(gridY*blockSide+(i-2)*blockSide)), Color.CYAN, blockSide, getContext()).draw(canvas);
                 }
                 else if(Map[i][j] == 2){
@@ -124,9 +126,7 @@ public class Tetrengine extends SurfaceView implements SurfaceHolder.Callback{
                 else if(Map[i][j] == 7){
                     new Block(new Point((int)(gridX*blockSide+j*blockSide), (int)(gridY*blockSide+(i-2)*blockSide)), Color.rgb(255, 127, 0), blockSide, getContext()).draw(canvas);
                 }
-                else{
-                    new Block(new Point((int)(gridX*blockSide+j*blockSide), (int)(gridY*blockSide+(i-2)*blockSide)), Color.WHITE, blockSide, getContext()).draw(canvas);
-                }
+
             }
         }
 

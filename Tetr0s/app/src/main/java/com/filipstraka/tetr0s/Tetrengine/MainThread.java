@@ -1,6 +1,7 @@
 package com.filipstraka.tetr0s.Tetrengine;
 
 import android.graphics.Canvas;
+import android.util.Log;
 import android.view.SurfaceHolder;
 
 /**
