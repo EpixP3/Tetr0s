@@ -1,6 +1,8 @@
 package com.filipstraka.tetr0s.Tetrengine;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.util.Log;
 import android.view.SurfaceHolder;
 
@@ -28,14 +30,6 @@ public class MainThread extends Thread {
 
     @Override
     public void run(){
-        //RUN
-        //Poziva se 60 puta u sekundi (tako bi trebalo ako nisam nista za-j...)
-
-
-
-
-
-        //###########REGULACIJA FRAMOVA###########
         long startTime;
         long timeMilis = 1000/MAX_FPS;
         long waitTime;
@@ -44,6 +38,12 @@ public class MainThread extends Thread {
         long targetTime = 1000/MAX_FPS;
 
         while (running){
+            //60 PUTA U SEKUNDI SE IZVRSI OVAJ KOD ISPOD
+
+            //nema koda
+
+            //60 PUTA U SEKUNDI SE IZVRSI OVAJ KOD IZNAD
+            //###### REGULACIJA FRAMOVA ##########################################
             startTime = System.nanoTime();
             canvas = null;
             try{
@@ -59,6 +59,10 @@ public class MainThread extends Thread {
             finally {
                 if(canvas != null){
                     try{
+                        Paint txtpaint = new Paint();
+                        txtpaint.setTextSize(20);
+                        txtpaint.setColor(Color.WHITE);
+                        canvas.drawText("Frame: "+frameCount, 10, 20, txtpaint);
                         holder.unlockCanvasAndPost(canvas);
                     }
                     catch (Exception e){
@@ -78,14 +82,12 @@ public class MainThread extends Thread {
             }
             totalTime += System.nanoTime() - startTime;
             frameCount++;
-            if(frameCount == MAX_FPS){
-                avgFPS = 1000/(totalTime/frameCount)/1000000;
-                frameCount = 0;
+            if(frameCount == MAX_FPS) {
+                //avgFPS = 1000 / (totalTime/MAX_FPS) / 1000000;
+                avgFPS = 1000/(totalTime/MAX_FPS);
+                frameCount=0;
             }
+            //###### KRAJ REGULACIJE FRAMOVA#############################################
         }
-
-        //########KRAJ REGULACIJE FRAMOVA############
-
-
     }
 }
