@@ -47,6 +47,7 @@ public class MainThread extends Thread {
             startTime = System.nanoTime();
             canvas = null;
             try{
+
                 canvas = this.holder.lockCanvas();
                 synchronized (holder){
                     this.tetrengine.update();
@@ -55,13 +56,17 @@ public class MainThread extends Thread {
             }
             catch (Exception e){
                 e.printStackTrace();
+                this.holder.unlockCanvasAndPost(canvas);
             }
             finally {
                 if(canvas != null){
                     try{
                         Paint txtpaint = new Paint();
                         txtpaint.setTextSize(20);
-                        txtpaint.setColor(Color.WHITE);
+                        txtpaint.setColor(Color.RED);
+                        txtpaint.setStrokeWidth(1);
+                        txtpaint.setShadowLayer(1, 1,1,Color.BLACK);
+                        txtpaint.setFakeBoldText(true);
                         canvas.drawText("Frame: "+frameCount, 10, 20, txtpaint);
                         holder.unlockCanvasAndPost(canvas);
                     }

@@ -18,6 +18,8 @@ public class Block implements Object {
     Point point;
     Rect rect = new Rect();
     Bitmap bitmap;
+    Tetrengine tetrengine;
+    int mapX, mapY;
 
     //konstruktor za inicijalizaciju bloka
     public Block(int x, int y, Bitmap newBitmap, int size){
