@@ -53,7 +53,7 @@ public class PlayerThread extends Thread {
                 tetrengine.Map[playerBlock.x][playerBlock.y].setBitmap(tetrengine.cyan);
             }
             else{
-                playerBlock.set(5, 0);
+                playerBlock.set(5, 2);
                 break;
             }
         }
@@ -70,7 +70,7 @@ public class PlayerThread extends Thread {
                 tetrengine.Map[playerBlock.x][playerBlock.y].setBitmap(tetrengine.cyan);
             }
             else{
-                playerBlock.set(5, 0);
+                playerBlock.set(5, 2);
             }
             //delay
             try {
