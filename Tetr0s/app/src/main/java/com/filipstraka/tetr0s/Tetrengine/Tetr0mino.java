@@ -50,10 +50,10 @@ public class Tetr0mino {
             //   #
             //  #0
             //   #
-            tetr0mino_90[0].set(0,0);
-            tetr0mino_90[1].set(-1,0);
-            tetr0mino_90[2].set(0,1);
-            tetr0mino_90[3].set(0,-1);
+            tetr0mino_270[0].set(0,0);
+            tetr0mino_270[1].set(-1,0);
+            tetr0mino_270[2].set(0,1);
+            tetr0mino_270[3].set(0,-1);
         }
         else if(type == 1){
             //TYPE: J
