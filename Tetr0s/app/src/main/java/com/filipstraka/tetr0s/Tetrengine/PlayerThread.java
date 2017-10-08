@@ -13,12 +13,15 @@ public class PlayerThread extends Thread {
     boolean running;
     long delay;
     Point playerBlock = new Point();
+    Tetr0mino Tetr0mino;
+
 
 
     //konstruktor..
     public PlayerThread(Tetrengine tetrengine){
         this.tetrengine = tetrengine;
-        playerBlock.set(5,0);
+        playerBlock.set(5,8);
+        this.Tetr0mino=new Tetr0mino(0);
     }
 
     //just cuz i can
@@ -67,11 +70,15 @@ public class PlayerThread extends Thread {
                     tetrengine.Map[playerBlock.x][playerBlock.y].setBitmap(null);
                 }
                 playerBlock.set(playerBlock.x, playerBlock.y + 1);
-                tetrengine.Map[playerBlock.x][playerBlock.y].setBitmap(tetrengine.cyan);
+                tetrengine.Map[playerBlock.x+Tetr0mino.tetr0mino_normal[0].x][playerBlock.y+Tetr0mino.tetr0mino_normal[0].y].setBitmap(tetrengine.cyan);
+                tetrengine.Map[playerBlock.x+Tetr0mino.tetr0mino_normal[1].x][playerBlock.y+Tetr0mino.tetr0mino_normal[1].y].setBitmap(tetrengine.cyan);
+                tetrengine.Map[playerBlock.x+Tetr0mino.tetr0mino_normal[2].x][playerBlock.y+Tetr0mino.tetr0mino_normal[2].y].setBitmap(tetrengine.cyan);
+                tetrengine.Map[playerBlock.x+Tetr0mino.tetr0mino_normal[3].x][playerBlock.y+Tetr0mino.tetr0mino_normal[3].y].setBitmap(tetrengine.cyan);
             }
             else{
                 playerBlock.set(5, 2);
             }
+
             //delay
             try {
                 sleep(delay);

@@ -93,7 +93,7 @@ public class Tetrengine extends SurfaceView implements SurfaceHolder.Callback{
         //Inicijalizacija i Startovanje player thread-a
         playerThread = new PlayerThread(this);
         playerThread.setRunning(true);
-        playerThread.setDelay(800); //milisekunde
+        playerThread.setDelay(10000); //milisekunde
         playerThread.start();
 
         //Inicijalizacija Rectova
