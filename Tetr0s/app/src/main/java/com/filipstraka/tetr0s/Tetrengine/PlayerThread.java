@@ -14,6 +14,7 @@ public class PlayerThread extends Thread {
     long delay;
     Point playerBlock = new Point();
     Tetr0mino Tetr0mino;
+    int orientation = 0;
 
 
 
@@ -94,24 +95,80 @@ public class PlayerThread extends Thread {
             */
             //GORE JE STARI KOD SAMO ZA JEDAN BLOK
             //TODO
+            //ostavite ovo gospodinu faplu da sredi
             boolean pass=true;
-            for(int i=0; i < 4; i++){
-                switch(type){
+                switch(orientation){
                     case 0:
-                        if(playerBlock.y+Tetr0mino.tetr0mino_normal[i]){
-                            
-                        }
-                        else{
+                        switch(Tetr0mino.type){
+                            case 0:
+                                if()
+                            case 1:
+                                
+                            case 2:
+                                
+                            case 3:
+                                
+                            case 4:
+                                
+                            case 5:
+                                
+                            case 6:
+                                
                         }
                     case 1:
-                        
+                        switch(Tetr0mino.type){
+                            case 0:
+                                
+                            case 1:
+                                
+                            case 2:
+                                
+                            case 3:
+                                
+                            case 4:
+                                
+                            case 5:
+                                
+                            case 6:
+                                
+                        }
                     case 2:
-                        
+                        switch(Tetr0mino.type){
+                            case 0:
+                                
+                            case 1:
+                                
+                            case 2:
+                                
+                            case 3:
+                                
+                            case 4:
+                                
+                            case 5:
+                                
+                            case 6:
+                                
+                        }
                     case 3:
-                        
-                }
+                        switch(Tetr0mino.type){
+                            case 0:
+                                
+                            case 1:
+                                
+                            case 2:
+                                
+                            case 3:
+                                
+                            case 4:
+                                
+                            case 5:
+                                
+                            case 6:
+                                
+                        }
             }
-            if(){
+            //ako nista nema ispod tetr0mina
+            if(pass){
                 
             }
             else{
