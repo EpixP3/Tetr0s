@@ -21,7 +21,7 @@ public class PlayerThread extends Thread {
     public PlayerThread(Tetrengine tetrengine){
         this.tetrengine = tetrengine;
         playerBlock.set(5,8);
-        this.Tetr0mino=new Tetr0mino(0);
+        this.Tetr0mino=new Tetr0mino(6);
     }
 
     //just cuz i can
@@ -70,10 +70,10 @@ public class PlayerThread extends Thread {
                     tetrengine.Map[playerBlock.x][playerBlock.y].setBitmap(null);
                 }
                 playerBlock.set(playerBlock.x, playerBlock.y + 1);
-                tetrengine.Map[playerBlock.x+Tetr0mino.tetr0mino_normal[0].x][playerBlock.y+Tetr0mino.tetr0mino_normal[0].y].setBitmap(tetrengine.cyan);
-                tetrengine.Map[playerBlock.x+Tetr0mino.tetr0mino_normal[1].x][playerBlock.y+Tetr0mino.tetr0mino_normal[1].y].setBitmap(tetrengine.cyan);
-                tetrengine.Map[playerBlock.x+Tetr0mino.tetr0mino_normal[2].x][playerBlock.y+Tetr0mino.tetr0mino_normal[2].y].setBitmap(tetrengine.cyan);
-                tetrengine.Map[playerBlock.x+Tetr0mino.tetr0mino_normal[3].x][playerBlock.y+Tetr0mino.tetr0mino_normal[3].y].setBitmap(tetrengine.cyan);
+                tetrengine.Map[playerBlock.x+Tetr0mino.tetr0mino_90[0].x][playerBlock.y+Tetr0mino.tetr0mino_90[0].y].setBitmap(tetrengine.cyan);
+                tetrengine.Map[playerBlock.x+Tetr0mino.tetr0mino_90[1].x][playerBlock.y+Tetr0mino.tetr0mino_90[1].y].setBitmap(tetrengine.cyan);
+                tetrengine.Map[playerBlock.x+Tetr0mino.tetr0mino_90[2].x][playerBlock.y+Tetr0mino.tetr0mino_90[2].y].setBitmap(tetrengine.cyan);
+                tetrengine.Map[playerBlock.x+Tetr0mino.tetr0mino_90[3].x][playerBlock.y+Tetr0mino.tetr0mino_90[3].y].setBitmap(tetrengine.cyan);
             }
             else{
                 playerBlock.set(5, 2);
