@@ -158,7 +158,19 @@ public class Tetr0mino {
             tetr0mino_90[3]= new Point(1,1);
             //  #0#
             //   #
-
+			//  #0#
+            //   #
+            tetr0mino_180[0]= new Point(0,0);
+            tetr0mino_180[1]= new Point(1,0);
+            tetr0mino_180[2]= new Point(0,1);
+            tetr0mino_180[3]= new Point(-1,1);
+            //   #
+            //  #0
+            //   #
+            tetr0mino_270[0]= new Point(0,0);
+            tetr0mino_270[1]= new Point(0,-1);
+            tetr0mino_270[2]= new Point(1,0);
+            tetr0mino_270[3]= new Point(1,1);
         }else if(type == 5){
             //TYPE: L
 
