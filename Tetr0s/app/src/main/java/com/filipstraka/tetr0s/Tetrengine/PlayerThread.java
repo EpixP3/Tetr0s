@@ -14,7 +14,8 @@ public class PlayerThread extends Thread {
     long delay;
     Point playerBlock = new Point();
     Tetr0mino Tetr0mino;
-    int orientation = 0;
+    Tetr0mino tetr0mino;
+    int orientation=0; //0 = 0, 1 = 90, 2 = 180, 3 = 270
 
 
 
@@ -23,6 +24,8 @@ public class PlayerThread extends Thread {
         this.tetrengine = tetrengine;
         playerBlock.set(5,8);
         this.Tetr0mino=new Tetr0mino(6);
+        playerBlock.set(5,0);
+        tetr0mino = new Tetr0mino((int)(Math.random()*7));
     }
 
     //just cuz i can
@@ -33,6 +36,12 @@ public class PlayerThread extends Thread {
     public void setDelay(long delay){
         this.delay = delay;
     }
+    public void rotateLeft(){
+        //TODO                       KOD ZA ROTATE LEFT
+    }
+    public void rotateRight(){
+        //TODO                       KOD ZA ROTATE RIGHT
+    }
     public void moveLeft(){
         /*if(playerBlock.x > 0 && tetrengine.Map[playerBlock.x-1][playerBlock.y].bitmap == null) {
             tetrengine.Map[playerBlock.x][playerBlock.y].setBitmap(null);
@@ -41,7 +50,7 @@ public class PlayerThread extends Thread {
         }
         */
         //GORE JE STARI KOD SAMO ZA JEDAN BLOK
-        //TODO
+        //TODO                       KOD ZA MOVE LEFT
     }
     public void moveRight(){
         /*
@@ -52,7 +61,8 @@ public class PlayerThread extends Thread {
         }
         */
         //GORE JE STARI KOD SAMO ZA JEDAN BLOK
-        //TODO
+        //TODO                       KOD ZA MOVE RIGHT
+
     }
     public void drop(){
         /*
@@ -71,7 +81,7 @@ public class PlayerThread extends Thread {
         }
         */
         //GORE JE STARI KOD SAMO ZA JEDAN BLOK
-        //TODO
+        //TODO                        KOD ZA DROP
     }
     @Override
     public void run(){
@@ -80,9 +90,7 @@ public class PlayerThread extends Thread {
             
             /*
             if(playerBlock.y < 21 && tetrengine.Map[playerBlock.x][playerBlock.y+1].bitmap == null) {
-                if (playerBlock.y > 0) {
-                    tetrengine.Map[playerBlock.x][playerBlock.y].setBitmap(null);
-                }
+                tetrengine.Map[playerBlock.x][playerBlock.y].setBitmap(null);
                 playerBlock.set(playerBlock.x, playerBlock.y + 1);
                 tetrengine.Map[playerBlock.x+Tetr0mino.tetr0mino_90[0].x][playerBlock.y+Tetr0mino.tetr0mino_90[0].y].setBitmap(tetrengine.cyan);
                 tetrengine.Map[playerBlock.x+Tetr0mino.tetr0mino_90[1].x][playerBlock.y+Tetr0mino.tetr0mino_90[1].y].setBitmap(tetrengine.cyan);
@@ -91,6 +99,8 @@ public class PlayerThread extends Thread {
             }
             else{
                 playerBlock.set(5, 2);
+                tetr0mino = new Tetr0mino((int)(Math.random()*7));
+                orientation = 0;
             }
             */
             //GORE JE STARI KOD SAMO ZA JEDAN BLOK
@@ -101,7 +111,7 @@ public class PlayerThread extends Thread {
                     case 0:
                         switch(Tetr0mino.type){
                             case 0:
-                                if()
+
                             case 1:
                                 
                             case 2:
@@ -172,7 +182,9 @@ public class PlayerThread extends Thread {
                 
             }
             else{
-                
+                playerBlock.set(5, 2);
+                tetr0mino = new Tetr0mino((int)(Math.random()*7));
+                orientation = 0;
             }
             //delay
             try {

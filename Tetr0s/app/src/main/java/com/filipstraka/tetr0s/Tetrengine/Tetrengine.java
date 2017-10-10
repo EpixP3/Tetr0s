@@ -158,6 +158,9 @@ public class Tetrengine extends SurfaceView implements SurfaceHolder.Callback{
 
 
             case MotionEvent.ACTION_UP:
+                if(downRect.contains((int)event.getX(), (int)event.getY())) {
+                    //playerThread.setDelay(800);
+                }
         }
         return true;
         //return super.onTouchEvent(event);

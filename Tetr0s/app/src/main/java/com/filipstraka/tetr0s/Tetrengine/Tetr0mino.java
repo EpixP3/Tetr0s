@@ -77,6 +77,8 @@ public class Tetr0mino {
             //   #
             //  #0
             //   #
+
+            //TODO   NIJE DOBRO
             tetr0mino_270[0]= new Point(0,0);
             tetr0mino_270[1]= new Point(-1,0);
             tetr0mino_270[2]= new Point(0,1);
@@ -120,31 +122,23 @@ public class Tetr0mino {
             tetr0mino_normal[1]= new Point(-1,0);
             tetr0mino_normal[2]= new Point(-1,1);
             tetr0mino_normal[3]= new Point(0,1);
-            //  #
-            //  0#
-            //  #
+
             tetr0mino_90[0]= new Point(0,0);
             tetr0mino_90[1]= new Point(-1,0);
             tetr0mino_90[2]= new Point(-1,1);
             tetr0mino_90[3]= new Point(0,1);
-            //  #0#
-            //   #
+
             tetr0mino_180[0]= new Point(0,0);
             tetr0mino_180[1]= new Point(-1,0);
             tetr0mino_180[2]= new Point(-1,1);
             tetr0mino_180[3]= new Point(0,1);
-            //   #
-            //  #0
-            //   #
+
             tetr0mino_270[0]= new Point(0,0);
             tetr0mino_270[1]= new Point(-1,0);
             tetr0mino_270[2]= new Point(-1,1);
             tetr0mino_270[3]= new Point(0,1);
-
         }else if(type == 4){
             //TYPE: S
-
-
             tetr0mino_normal[0]= new Point(0,0);
             tetr0mino_normal[1]= new Point(1,0);
             tetr0mino_normal[2]= new Point(0,1);
