@@ -78,7 +78,6 @@ public class Tetr0mino {
             //  #0
             //   #
 
-            //TODO   NIJE DOBRO
             tetr0mino_270[0]= new Point(0,0);
             tetr0mino_270[1]= new Point(-1,0);
             tetr0mino_270[2]= new Point(1,0);
