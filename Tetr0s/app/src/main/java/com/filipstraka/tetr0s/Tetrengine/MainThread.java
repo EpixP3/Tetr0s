@@ -1,10 +1,14 @@
 package com.filipstraka.tetr0s.Tetrengine;
 
+import android.app.Application;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.Log;
 import android.view.SurfaceHolder;
+
+import com.filipstraka.tetr0s.MainActivity;
 
 /**
  * Created by strak on 4.10.2017..
@@ -56,7 +60,13 @@ public class MainThread extends Thread {
             }
             catch (Exception e){
                 e.printStackTrace();
-                this.holder.unlockCanvasAndPost(canvas);
+                try {
+                    this.holder.unlockCanvasAndPost(canvas);
+                }catch(Exception el){
+                    //User je vrv izasao iz igre
+                    android.os.Process.killProcess(android.os.Process.myPid());
+                    System.exit(1);
+                }
             }
             finally {
                 if(canvas != null){

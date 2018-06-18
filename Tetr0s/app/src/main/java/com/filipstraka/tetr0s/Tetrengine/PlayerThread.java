@@ -1,6 +1,8 @@
 package com.filipstraka.tetr0s.Tetrengine;
 
 import android.graphics.Point;
+import android.os.Debug;
+import android.util.Log;
 
 /**
  * Created by strak on 7.10.2017..
@@ -23,7 +25,7 @@ public class PlayerThread extends Thread {
         this.tetrengine = tetrengine;
         playerBlock.set(5,2);
         //tetr0mino = new Tetr0mino((int)(Math.random()*7));
-        tetr0mino = new Tetr0mino(1);
+        tetr0mino = new Tetr0mino(1, tetrengine);
     }
 
     //just cuz i can
@@ -48,6 +50,24 @@ public class PlayerThread extends Thread {
         }
         */
         //GORE JE STARI KOD SAMO ZA JEDAN BLOK
+
+
+        switch (orientation){
+            case 0:
+                if( playerBlock.x+tetr0mino.tetr0mino_normal[0].x > 0 && playerBlock.x+tetr0mino.tetr0mino_normal[1].x > 0 && playerBlock.x+tetr0mino.tetr0mino_normal[2].x > 0 && playerBlock.x+tetr0mino.tetr0mino_normal[3].x > 0){
+                    //Nije Van granica
+                    for(int i=0; i<4; i++){
+                        tetrengine.Map[playerBlock.x + tetr0mino.tetr0mino_normal[i].x][playerBlock.y + tetr0mino.tetr0mino_normal[i].y].setBitmap(null);
+                    }
+                    playerBlock.set(playerBlock.x - 1, playerBlock.y);
+                    for(int i=0; i<4; i++){
+                        tetrengine.Map[playerBlock.x + tetr0mino.tetr0mino_normal[i].x][playerBlock.y + tetr0mino.tetr0mino_normal[i].y].setBitmap(tetr0mino.typeImage);
+
+                    }
+                }
+                break;
+
+        }
         //TODO                       KOD ZA MOVE LEFT
     }
     public void moveRight(){
@@ -59,8 +79,23 @@ public class PlayerThread extends Thread {
         }
         */
         //GORE JE STARI KOD SAMO ZA JEDAN BLOK
-        //TODO                       KOD ZA MOVE RIGHT
+        switch (orientation){
+            case 0:
+                if( playerBlock.x+tetr0mino.tetr0mino_normal[0].x < 9 && playerBlock.x+tetr0mino.tetr0mino_normal[1].x < 9 && playerBlock.x+tetr0mino.tetr0mino_normal[2].x < 9 && playerBlock.x+tetr0mino.tetr0mino_normal[3].x < 9){
+                    //Nije Van granica
+                    for(int i=0; i<4; i++){
+                        tetrengine.Map[playerBlock.x + tetr0mino.tetr0mino_normal[i].x][playerBlock.y + tetr0mino.tetr0mino_normal[i].y].setBitmap(null);
+                    }
+                    playerBlock.set(playerBlock.x + 1, playerBlock.y);
+                    for(int i=0; i<4; i++){
+                        tetrengine.Map[playerBlock.x + tetr0mino.tetr0mino_normal[i].x][playerBlock.y + tetr0mino.tetr0mino_normal[i].y].setBitmap(tetr0mino.typeImage);
 
+                    }
+                }
+                break;
+
+        }
+        //TODO                       KOD ZA MOVE RIGHT
     }
     public void drop(){
         /*
@@ -79,58 +114,24 @@ public class PlayerThread extends Thread {
         }
         */
         //GORE JE STARI KOD SAMO ZA JEDAN BLOK
-        //TODO                        KOD ZA DROP
+        //TODO                        KOD ZA DROP KADA SE STISNE STRELICA DOLE
     }
-
     public void updateBlock(){
         switch(orientation){
             case 0:for(int i=0; i<4; i++) {tetrengine.Map[playerBlock.x + tetr0mino.tetr0mino_normal[i].x][playerBlock.y + tetr0mino.tetr0mino_normal[i].y].setBitmap(null);}playerBlock.set(playerBlock.x, playerBlock.y + 1);
-                switch(tetr0mino.type){
-                    case 0:for(int i=0; i<4; i++) {tetrengine.Map[playerBlock.x+tetr0mino.tetr0mino_normal[i].x][playerBlock.y+tetr0mino.tetr0mino_normal[i].y].setBitmap(tetrengine.magenta);}break;
-                    case 1:for(int i=0; i<4; i++) {tetrengine.Map[playerBlock.x+tetr0mino.tetr0mino_normal[i].x][playerBlock.y+tetr0mino.tetr0mino_normal[i].y].setBitmap(tetrengine.blue);}break;
-                    case 2:for(int i=0; i<4; i++) {tetrengine.Map[playerBlock.x+tetr0mino.tetr0mino_normal[i].x][playerBlock.y+tetr0mino.tetr0mino_normal[i].y].setBitmap(tetrengine.red);}break;
-                    case 3:for(int i=0; i<4; i++) {tetrengine.Map[playerBlock.x+tetr0mino.tetr0mino_normal[i].x][playerBlock.y+tetr0mino.tetr0mino_normal[i].y].setBitmap(tetrengine.yellow);}break;
-                    case 4:for(int i=0; i<4; i++) {tetrengine.Map[playerBlock.x+tetr0mino.tetr0mino_normal[i].x][playerBlock.y+tetr0mino.tetr0mino_normal[i].y].setBitmap(tetrengine.green);}break;
-                    case 5:for(int i=0; i<4; i++) {tetrengine.Map[playerBlock.x+tetr0mino.tetr0mino_normal[i].x][playerBlock.y+tetr0mino.tetr0mino_normal[i].y].setBitmap(tetrengine.orange);}break;
-                    case 6:for(int i=0; i<4; i++) {tetrengine.Map[playerBlock.x+tetr0mino.tetr0mino_normal[i].x][playerBlock.y+tetr0mino.tetr0mino_normal[i].y].setBitmap(tetrengine.cyan);}break;
-                }break;
+                for(int i=0; i<4; i++) {tetrengine.Map[playerBlock.x+tetr0mino.tetr0mino_normal[i].x][playerBlock.y+tetr0mino.tetr0mino_normal[i].y].setBitmap(tetr0mino.typeImage);}break;
             case 1:for(int i=0; i<4; i++) {tetrengine.Map[playerBlock.x + tetr0mino.tetr0mino_90[i].x][playerBlock.y + tetr0mino.tetr0mino_90[i].y].setBitmap(null);}playerBlock.set(playerBlock.x, playerBlock.y + 1);
-                switch(tetr0mino.type){
-                    case 0:for(int i=0; i<4; i++) {tetrengine.Map[playerBlock.x+tetr0mino.tetr0mino_90[i].x][playerBlock.y+tetr0mino.tetr0mino_90[i].y].setBitmap(tetrengine.magenta);}break;
-                    case 1:for(int i=0; i<4; i++) {tetrengine.Map[playerBlock.x+tetr0mino.tetr0mino_90[i].x][playerBlock.y+tetr0mino.tetr0mino_90[i].y].setBitmap(tetrengine.blue);}break;
-                    case 2:for(int i=0; i<4; i++) {tetrengine.Map[playerBlock.x+tetr0mino.tetr0mino_90[i].x][playerBlock.y+tetr0mino.tetr0mino_90[i].y].setBitmap(tetrengine.red);}break;
-                    case 3:for(int i=0; i<4; i++) {tetrengine.Map[playerBlock.x+tetr0mino.tetr0mino_90[i].x][playerBlock.y+tetr0mino.tetr0mino_90[i].y].setBitmap(tetrengine.yellow);}break;
-                    case 4:for(int i=0; i<4; i++) {tetrengine.Map[playerBlock.x+tetr0mino.tetr0mino_90[i].x][playerBlock.y+tetr0mino.tetr0mino_90[i].y].setBitmap(tetrengine.green);}break;
-                    case 5:for(int i=0; i<4; i++) {tetrengine.Map[playerBlock.x+tetr0mino.tetr0mino_90[i].x][playerBlock.y+tetr0mino.tetr0mino_90[i].y].setBitmap(tetrengine.orange);}break;
-                    case 6:for(int i=0; i<4; i++) {tetrengine.Map[playerBlock.x+tetr0mino.tetr0mino_90[i].x][playerBlock.y+tetr0mino.tetr0mino_90[i].y].setBitmap(tetrengine.cyan);}break;
-                }break;
+                for(int i=0; i<4; i++) {tetrengine.Map[playerBlock.x+tetr0mino.tetr0mino_90[i].x][playerBlock.y+tetr0mino.tetr0mino_90[i].y].setBitmap(tetr0mino.typeImage);}break;
             case 2:for(int i=0; i<4; i++) {tetrengine.Map[playerBlock.x + tetr0mino.tetr0mino_180[i].x][playerBlock.y + tetr0mino.tetr0mino_180[i].y].setBitmap(null);}playerBlock.set(playerBlock.x, playerBlock.y + 1);
-                switch(tetr0mino.type){
-                    case 0:for(int i=0; i<4; i++) {tetrengine.Map[playerBlock.x+tetr0mino.tetr0mino_180[i].x][playerBlock.y+tetr0mino.tetr0mino_180[i].y].setBitmap(tetrengine.magenta);}break;
-                    case 1:for(int i=0; i<4; i++) {tetrengine.Map[playerBlock.x+tetr0mino.tetr0mino_180[i].x][playerBlock.y+tetr0mino.tetr0mino_180[i].y].setBitmap(tetrengine.blue);}break;
-                    case 2:for(int i=0; i<4; i++) {tetrengine.Map[playerBlock.x+tetr0mino.tetr0mino_180[i].x][playerBlock.y+tetr0mino.tetr0mino_180[i].y].setBitmap(tetrengine.red);}break;
-                    case 3:for(int i=0; i<4; i++) {tetrengine.Map[playerBlock.x+tetr0mino.tetr0mino_180[i].x][playerBlock.y+tetr0mino.tetr0mino_180[i].y].setBitmap(tetrengine.yellow);}break;
-                    case 4:for(int i=0; i<4; i++) {tetrengine.Map[playerBlock.x+tetr0mino.tetr0mino_180[i].x][playerBlock.y+tetr0mino.tetr0mino_180[i].y].setBitmap(tetrengine.green);}break;
-                    case 5:for(int i=0; i<4; i++) {tetrengine.Map[playerBlock.x+tetr0mino.tetr0mino_180[i].x][playerBlock.y+tetr0mino.tetr0mino_180[i].y].setBitmap(tetrengine.orange);}break;
-                    case 6:for(int i=0; i<4; i++) {tetrengine.Map[playerBlock.x+tetr0mino.tetr0mino_180[i].x][playerBlock.y+tetr0mino.tetr0mino_180[i].y].setBitmap(tetrengine.cyan);}break;
-                }break;
+                for(int i=0; i<4; i++) {tetrengine.Map[playerBlock.x+tetr0mino.tetr0mino_180[i].x][playerBlock.y+tetr0mino.tetr0mino_180[i].y].setBitmap(tetr0mino.typeImage);}break;
             case 3:for(int i=0; i<4; i++) {tetrengine.Map[playerBlock.x + tetr0mino.tetr0mino_270[i].x][playerBlock.y + tetr0mino.tetr0mino_270[i].y].setBitmap(null);}playerBlock.set(playerBlock.x, playerBlock.y + 1);
-                switch(tetr0mino.type){
-                    case 0:for(int i=0; i<4; i++) {tetrengine.Map[playerBlock.x+tetr0mino.tetr0mino_270[i].x][playerBlock.y+tetr0mino.tetr0mino_270[i].y].setBitmap(tetrengine.magenta);}break;
-                    case 1:for(int i=0; i<4; i++) {tetrengine.Map[playerBlock.x+tetr0mino.tetr0mino_270[i].x][playerBlock.y+tetr0mino.tetr0mino_270[i].y].setBitmap(tetrengine.blue);}break;
-                    case 2:for(int i=0; i<4; i++) {tetrengine.Map[playerBlock.x+tetr0mino.tetr0mino_270[i].x][playerBlock.y+tetr0mino.tetr0mino_270[i].y].setBitmap(tetrengine.red);}break;
-                    case 3:for(int i=0; i<4; i++) {tetrengine.Map[playerBlock.x+tetr0mino.tetr0mino_270[i].x][playerBlock.y+tetr0mino.tetr0mino_270[i].y].setBitmap(tetrengine.yellow);}break;
-                    case 4:for(int i=0; i<4; i++) {tetrengine.Map[playerBlock.x+tetr0mino.tetr0mino_270[i].x][playerBlock.y+tetr0mino.tetr0mino_270[i].y].setBitmap(tetrengine.green);}break;
-                    case 5:for(int i=0; i<4; i++) {tetrengine.Map[playerBlock.x+tetr0mino.tetr0mino_270[i].x][playerBlock.y+tetr0mino.tetr0mino_270[i].y].setBitmap(tetrengine.orange);}break;
-                    case 6:for(int i=0; i<4; i++) {tetrengine.Map[playerBlock.x+tetr0mino.tetr0mino_270[i].x][playerBlock.y+tetr0mino.tetr0mino_270[i].y].setBitmap(tetrengine.cyan);}break;
-                }break;
+                for(int i=0; i<4; i++) {tetrengine.Map[playerBlock.x+tetr0mino.tetr0mino_270[i].x][playerBlock.y+tetr0mino.tetr0mino_270[i].y].setBitmap(tetr0mino.typeImage);}break;
         }
     }
     @Override
     public void run(){
         while(running){
             //TODO      Ostavite gospodinu faplu da sredi
-            orientation = 0;
             boolean pass=true;
                 switch(orientation){
                     case 0:
@@ -252,8 +253,8 @@ public class PlayerThread extends Thread {
             }
             else{
                 playerBlock.set(5, 2);
-                //tetr0mino = new Tetr0mino((int)(Math.random()*7));
-                tetr0mino = new Tetr0mino(1);
+                tetr0mino = new Tetr0mino((int)(Math.random()*7), tetrengine);
+                //tetr0mino = new Tetr0mino(1);
                 orientation = 0;
             }
             //delay
