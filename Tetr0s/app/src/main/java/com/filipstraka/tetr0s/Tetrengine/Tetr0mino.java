@@ -30,8 +30,8 @@ public class Tetr0mino {
         if(type == 0){
             //TYPE: T
             typeImage = tetrengine.magenta;
-            //   #
             //  #0#
+            //   #
             tetr0mino_normal[0]= new Point(0,0);
             tetr0mino_normal[1]= new Point(-1,0);
             tetr0mino_normal[2]= new Point(1,0);
@@ -43,8 +43,8 @@ public class Tetr0mino {
             tetr0mino_90[1]= new Point(0,1);
             tetr0mino_90[2]= new Point(1,0);
             tetr0mino_90[3]= new Point(0,-1);
-            //  #0#
             //   #
+            //  #0#
             tetr0mino_180[0]= new Point(0,0);
             tetr0mino_180[1]= new Point(-1,0);
             tetr0mino_180[2]= new Point(1,0);
@@ -60,28 +60,30 @@ public class Tetr0mino {
         else if(type == 1){
             //TYPE: J
             typeImage = tetrengine.blue;
-
+            //  #
+            //  0
+            // ##
             tetr0mino_normal[0]= new Point(0,0);
             tetr0mino_normal[1]= new Point(0,-1);
             tetr0mino_normal[2]= new Point(0,1);
             tetr0mino_normal[3]= new Point(-1,1);
-            //  #
-            //  0#
-            //  #
+            // #
+            // #0#
+            //
             tetr0mino_90[0]= new Point(0,0);
             tetr0mino_90[1]= new Point(-1,0);
             tetr0mino_90[2]= new Point(-1,-1);
             tetr0mino_90[3]= new Point(1,0);
-            //  #0#
-            //   #
+            //  ##
+            //  0
+            //  #
             tetr0mino_180[0]= new Point(0,0);
             tetr0mino_180[1]= new Point(1,-1);
             tetr0mino_180[2]= new Point(0,-1);
             tetr0mino_180[3]= new Point(0,1);
+            //
+            // #0#
             //   #
-            //  #0
-            //   #
-
             tetr0mino_270[0]= new Point(0,0);
             tetr0mino_270[1]= new Point(-1,0);
             tetr0mino_270[2]= new Point(1,0);
@@ -92,26 +94,31 @@ public class Tetr0mino {
 
         }else if(type == 2){
             //TYPE: Z
+
+            //
+            //  #0
+            //   ##
             typeImage = tetrengine.red;
             tetr0mino_normal[0]= new Point(0,0);
             tetr0mino_normal[1]= new Point(-1,0);
             tetr0mino_normal[2]= new Point(0,1);
             tetr0mino_normal[3]= new Point(1,1);
-            //  #
-            //  0#
-            //  #
+            //    #
+            //   0#
+            //   #
             tetr0mino_90[0]= new Point(0,0);
             tetr0mino_90[1]= new Point(1,-1);
             tetr0mino_90[2]= new Point(1,0);
             tetr0mino_90[3]= new Point(0,1);
-            //  #0#
-            //   #
+            //
+            //  #0
+            //   ##
             tetr0mino_180[0]= new Point(0,0);
             tetr0mino_180[1]= new Point(-1,0);
             tetr0mino_180[2]= new Point(0,1);
             tetr0mino_180[3]= new Point(1,1);
-            //   #
-            //  #0
+            //    #
+            //   0#
             //   #
             tetr0mino_270[0]= new Point(0,0);
             tetr0mino_270[1]= new Point(1,-1);
@@ -122,27 +129,35 @@ public class Tetr0mino {
         }else if(type == 3){
             //TYPE: O
             typeImage = tetrengine.yellow;
+            //   #0
+            //   ##
             tetr0mino_normal[0]= new Point(0,0);
             tetr0mino_normal[1]= new Point(-1,0);
             tetr0mino_normal[2]= new Point(-1,1);
             tetr0mino_normal[3]= new Point(0,1);
-
+            //   #0
+            //   ##
             tetr0mino_90[0]= new Point(0,0);
             tetr0mino_90[1]= new Point(-1,0);
             tetr0mino_90[2]= new Point(-1,1);
             tetr0mino_90[3]= new Point(0,1);
-
+            //   #0
+            //   ##
             tetr0mino_180[0]= new Point(0,0);
             tetr0mino_180[1]= new Point(-1,0);
             tetr0mino_180[2]= new Point(-1,1);
             tetr0mino_180[3]= new Point(0,1);
-
+            //   #0
+            //   ##
             tetr0mino_270[0]= new Point(0,0);
             tetr0mino_270[1]= new Point(-1,0);
             tetr0mino_270[2]= new Point(-1,1);
             tetr0mino_270[3]= new Point(0,1);
         }else if(type == 4){
             //TYPE: S
+
+            //  0#
+            // ##
             typeImage = tetrengine.green;
             tetr0mino_normal[0]= new Point(0,0);
             tetr0mino_normal[1]= new Point(1,0);
@@ -150,21 +165,19 @@ public class Tetr0mino {
             tetr0mino_normal[3]= new Point(-1,1);
             //  #
             //  0#
-            //  #
+            //   #
             tetr0mino_90[0]= new Point(0,0);
             tetr0mino_90[1]= new Point(0,-1);
             tetr0mino_90[2]= new Point(1,0);
             tetr0mino_90[3]= new Point(1,1);
-            //  #0#
-            //   #
-			//  #0#
-            //   #
+            //  0#
+            // ##
             tetr0mino_180[0]= new Point(0,0);
             tetr0mino_180[1]= new Point(1,0);
             tetr0mino_180[2]= new Point(0,1);
             tetr0mino_180[3]= new Point(-1,1);
-            //   #
-            //  #0
+            //  #
+            //  0#
             //   #
             tetr0mino_270[0]= new Point(0,0);
             tetr0mino_270[1]= new Point(0,-1);
@@ -174,27 +187,29 @@ public class Tetr0mino {
             //TYPE: L
             typeImage = tetrengine.orange;
             //   #
-            //  #0#
+            //   0
+            //   ##
             tetr0mino_normal[0]= new Point(0,0);
             tetr0mino_normal[1]= new Point(0,-1);
             tetr0mino_normal[2]= new Point(1,1);
             tetr0mino_normal[3]= new Point(0,1);
-            //  #
-            //  0#
+            //
+            //  #0#
             //  #
             tetr0mino_90[0]= new Point(0,0);
             tetr0mino_90[1]= new Point(-1,0);
             tetr0mino_90[2]= new Point(1,0);
             tetr0mino_90[3]= new Point(-1,1);
-            //  #0#
+            //  ##
+            //   0
             //   #
             tetr0mino_180[0]= new Point(0,0);
             tetr0mino_180[1]= new Point(-1,-1);
             tetr0mino_180[2]= new Point(0,1);
             tetr0mino_180[3]= new Point(0,-1);
-            //   #
-            //  #0
-            //   #
+            //    #
+            //  #0#
+            //
             tetr0mino_270[0]= new Point(0,0);
             tetr0mino_270[1]= new Point(1,-1);
             tetr0mino_270[2]= new Point(1,0);
@@ -203,34 +218,36 @@ public class Tetr0mino {
         }else if(type == 6){
             //TYPE I
             typeImage = tetrengine.cyan;
-//   #
-            //  #0#
+            //  #
+            //  #
+            //  0
+            //  #
             tetr0mino_normal[0]= new Point(0,-2);
             tetr0mino_normal[1]= new Point(0,-1);
             tetr0mino_normal[2]= new Point(0,0);
             tetr0mino_normal[3]= new Point(0,1);
-            //  #
-            //  0#
-            //  #
+            //
+            //  ##0#
+            //
             tetr0mino_90[0]= new Point(-2,0);
             tetr0mino_90[1]= new Point(-1,0);
             tetr0mino_90[2]= new Point(0,0);
             tetr0mino_90[3]= new Point(1,0);
-            //  #0#
             //   #
-            //  #0#
+            //   0
             //   #
-            tetr0mino_180[0]= new Point(0,-2);
-            tetr0mino_180[1]= new Point(0,-1);
+            //   #
+            tetr0mino_180[0]= new Point(0,2);
+            tetr0mino_180[1]= new Point(0,1);
             tetr0mino_180[2]= new Point(0,0);
-            tetr0mino_180[3]= new Point(0,1);
-            //   #
-            //  #0
-            //   #
-            tetr0mino_270[0]= new Point(-2,0);
-            tetr0mino_270[1]= new Point(-1,0);
+            tetr0mino_180[3]= new Point(0,-1);
+            //
+            //  #0##
+            //
+            tetr0mino_270[0]= new Point(2,0);
+            tetr0mino_270[1]= new Point(1,0);
             tetr0mino_270[2]= new Point(0,0);
-            tetr0mino_270[3]= new Point(1,0);
+            tetr0mino_270[3]= new Point(-1,0);
 
 
         }

@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.util.Log;
 
 import com.filipstraka.tetr0s.R;
 
@@ -39,7 +40,11 @@ public class Block implements Object {
         //ako je polje prazno onda koji k cu da crtam...
         if(bitmap != null) {
             Paint paint = new Paint();
-            canvas.drawBitmap(bitmap, null, rect, paint);
+            try {
+                canvas.drawBitmap(bitmap, null, rect, paint);
+            }catch (Exception e){
+                Log.e("ERROR", "TRYING TO RENDER BITMAP");
+            }
         }
     }
 }

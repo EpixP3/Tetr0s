@@ -7,11 +7,14 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.os.Build;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import com.filipstraka.tetr0s.MainActivity;
 import com.filipstraka.tetr0s.R;
 
 /**
@@ -26,6 +29,7 @@ public class Tetrengine extends SurfaceView implements SurfaceHolder.Callback{
     Bitmap move_left, move_right, move_down, rotate_left, rotate_right;
     int buttonSize;
     Rect leftRect, rightRect, downRect, rotateLeftRect, rotateRightRect;
+    Vibrator vibrator;
 
     double gridX = 3.5;
     double gridY = 1;
@@ -43,8 +47,9 @@ public class Tetrengine extends SurfaceView implements SurfaceHolder.Callback{
     //Matrica blokova
     public Block[][] Map = new Block[10][22]; //Block [levo/desno(x)]  [gore/dole(y)]
 
-    public Tetrengine(Context context){
+    public Tetrengine(Context context, Vibrator vib){
         super(context);
+        vibrator = vib;
         getHolder().addCallback(this);
         setFocusable(true);
         thread = new MainThread(getHolder(), this);
@@ -136,24 +141,29 @@ public class Tetrengine extends SurfaceView implements SurfaceHolder.Callback{
                     Log.d("Input", "LEFT");
                      //Left
                     playerThread.moveLeft();
+                    vibrator.vibrate(70);
                 }
                 if(rightRect.contains((int)event.getX(), (int)event.getY())) {
                     Log.d("Input", "RIGHT");
                     //Right
                     playerThread.moveRight();
+                    vibrator.vibrate(70);
                 }
                 if(downRect.contains((int)event.getX(), (int)event.getY())) {
                     Log.d("Input", "DOWN");
                     //Down
                     playerThread.drop();
+                    vibrator.vibrate(70);
                 }
                 if(rotateLeftRect.contains((int)event.getX(), (int)event.getY())) {
                     Log.d("Input", "ROTATE_LEFT");
                     //Rotate Left
+                    vibrator.vibrate(70);
                 }
                 if(rotateRightRect.contains((int)event.getX(), (int)event.getY())) {
                     Log.d("Input", "ROTATE_RIGHT");
                     //Rotate Right
+                    vibrator.vibrate(70);
                 }
 
 

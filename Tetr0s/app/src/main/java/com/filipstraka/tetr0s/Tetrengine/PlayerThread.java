@@ -1,8 +1,7 @@
 package com.filipstraka.tetr0s.Tetrengine;
 
 import android.graphics.Point;
-import android.os.Debug;
-import android.util.Log;
+import android.os.Vibrator;
 
 /**
  * Created by strak on 7.10.2017..
@@ -11,17 +10,15 @@ import android.util.Log;
  */
 
 public class PlayerThread extends Thread {
-    Tetrengine tetrengine;
-    boolean running;
-    long delay;
-    Point playerBlock = new Point();
-    Tetr0mino tetr0mino;
-    int orientation=0; //0 = 0, 1 = 90, 2 = 180, 3 = 270
-
-
+    private Tetrengine tetrengine;
+    private boolean running;
+    private long delay;
+    private Point playerBlock = new Point();
+    private Tetr0mino tetr0mino;
+    private int orientation=0; //0 = 0, 1 = 90, 2 = 180, 3 = 270
 
     //konstruktor..
-    public PlayerThread(Tetrengine tetrengine){
+     PlayerThread(Tetrengine tetrengine){
         this.tetrengine = tetrengine;
         playerBlock.set(5,2);
         //tetr0mino = new Tetr0mino((int)(Math.random()*7));
@@ -29,11 +26,11 @@ public class PlayerThread extends Thread {
     }
 
     //just cuz i can
-    public void setRunning(boolean running){
+    void setRunning(boolean running){
         this.running = running;
     }
     //just cuz i can
-    public void setDelay(long delay){
+    void setDelay(long delay){
         this.delay = delay;
     }
     public void rotateLeft(){
@@ -42,7 +39,7 @@ public class PlayerThread extends Thread {
     public void rotateRight(){
         //TODO                       KOD ZA ROTATE RIGHT
     }
-    public void moveLeft(){
+    void moveLeft(){
         /*if(playerBlock.x > 0 && tetrengine.Map[playerBlock.x-1][playerBlock.y].bitmap == null) {
             tetrengine.Map[playerBlock.x][playerBlock.y].setBitmap(null);
             playerBlock.set(playerBlock.x -1, playerBlock.y);
@@ -51,26 +48,57 @@ public class PlayerThread extends Thread {
         */
         //GORE JE STARI KOD SAMO ZA JEDAN BLOK
 
-
+        boolean canMove = true;
         switch (orientation){
             case 0:
                 if( playerBlock.x+tetr0mino.tetr0mino_normal[0].x > 0 && playerBlock.x+tetr0mino.tetr0mino_normal[1].x > 0 && playerBlock.x+tetr0mino.tetr0mino_normal[2].x > 0 && playerBlock.x+tetr0mino.tetr0mino_normal[3].x > 0){
                     //Nije Van granica
-                    for(int i=0; i<4; i++){
-                        tetrengine.Map[playerBlock.x + tetr0mino.tetr0mino_normal[i].x][playerBlock.y + tetr0mino.tetr0mino_normal[i].y].setBitmap(null);
+                    switch (tetr0mino.type){
+                        case 0:
+                            if(tetrengine.Map[playerBlock.x-2][playerBlock.y].bitmap != null || tetrengine.Map[playerBlock.x-1][playerBlock.y+1].bitmap != null){
+                                canMove=false;
+                            }break;
+                        case 1:
+                            if(tetrengine.Map[playerBlock.x-1][playerBlock.y].bitmap != null || tetrengine.Map[playerBlock.x-2][playerBlock.y+1].bitmap != null || tetrengine.Map[playerBlock.x-1][playerBlock.y-1].bitmap != null){
+                                canMove=false;
+                            }break;
+                        case 2:
+                            if(tetrengine.Map[playerBlock.x-2][playerBlock.y].bitmap != null || tetrengine.Map[playerBlock.x-1][playerBlock.y+1].bitmap != null){
+                                canMove=false;
+                            }break;
+                        case 3:
+                            if(tetrengine.Map[playerBlock.x-2][playerBlock.y].bitmap != null || tetrengine.Map[playerBlock.x-2][playerBlock.y+1].bitmap != null){
+                                canMove=false;
+                            }break;
+                        case 4:
+                            if(tetrengine.Map[playerBlock.x-1][playerBlock.y].bitmap != null || tetrengine.Map[playerBlock.x-2][playerBlock.y+1].bitmap != null){
+                                canMove=false;
+                            }break;
+                        case 5:
+                            if(tetrengine.Map[playerBlock.x-1][playerBlock.y].bitmap != null || tetrengine.Map[playerBlock.x-1][playerBlock.y+1].bitmap != null || tetrengine.Map[playerBlock.x-1][playerBlock.y-1].bitmap != null){
+                                canMove=false;
+                            }break;
+                        case 6:
+                            if(tetrengine.Map[playerBlock.x-1][playerBlock.y].bitmap != null || tetrengine.Map[playerBlock.x-1][playerBlock.y-1].bitmap != null || tetrengine.Map[playerBlock.x-1][playerBlock.y-2].bitmap != null || tetrengine.Map[playerBlock.x-1][playerBlock.y+1].bitmap != null){
+                                canMove=false;
+                            }break;
                     }
-                    playerBlock.set(playerBlock.x - 1, playerBlock.y);
-                    for(int i=0; i<4; i++){
-                        tetrengine.Map[playerBlock.x + tetr0mino.tetr0mino_normal[i].x][playerBlock.y + tetr0mino.tetr0mino_normal[i].y].setBitmap(tetr0mino.typeImage);
-
-                    }
-                }
-                break;
-
+                }else{
+                    canMove=false;
+                }break;
+        }
+        if(canMove) {
+            for (int i = 0; i < 4; i++) {
+                tetrengine.Map[playerBlock.x + tetr0mino.tetr0mino_normal[i].x][playerBlock.y + tetr0mino.tetr0mino_normal[i].y].setBitmap(null);
+            }
+            playerBlock.set(playerBlock.x - 1, playerBlock.y);
+            for (int i = 0; i < 4; i++) {
+                tetrengine.Map[playerBlock.x + tetr0mino.tetr0mino_normal[i].x][playerBlock.y + tetr0mino.tetr0mino_normal[i].y].setBitmap(tetr0mino.typeImage);
+            }
         }
         //TODO                       KOD ZA MOVE LEFT
     }
-    public void moveRight(){
+    void moveRight(){
         /*
         if(playerBlock.x < 9 && tetrengine.Map[playerBlock.x+1][playerBlock.y].bitmap == null) {
             tetrengine.Map[playerBlock.x][playerBlock.y].setBitmap(null);
@@ -97,7 +125,7 @@ public class PlayerThread extends Thread {
         }
         //TODO                       KOD ZA MOVE RIGHT
     }
-    public void drop(){
+    void drop(){
         /*
         while(true){
             if(playerBlock.y < 21 && tetrengine.Map[playerBlock.x][playerBlock.y+1].bitmap == null) {
@@ -116,7 +144,7 @@ public class PlayerThread extends Thread {
         //GORE JE STARI KOD SAMO ZA JEDAN BLOK
         //TODO                        KOD ZA DROP KADA SE STISNE STRELICA DOLE
     }
-    public void updateBlock(){
+    void updateBlock(){
         switch(orientation){
             case 0:for(int i=0; i<4; i++) {tetrengine.Map[playerBlock.x + tetr0mino.tetr0mino_normal[i].x][playerBlock.y + tetr0mino.tetr0mino_normal[i].y].setBitmap(null);}playerBlock.set(playerBlock.x, playerBlock.y + 1);
                 for(int i=0; i<4; i++) {tetrengine.Map[playerBlock.x+tetr0mino.tetr0mino_normal[i].x][playerBlock.y+tetr0mino.tetr0mino_normal[i].y].setBitmap(tetr0mino.typeImage);}break;
@@ -131,7 +159,6 @@ public class PlayerThread extends Thread {
     @Override
     public void run(){
         while(running){
-            //TODO      Ostavite gospodinu faplu da sredi
             boolean pass=true;
                 switch(orientation){
                     case 0:
@@ -247,11 +274,12 @@ public class PlayerThread extends Thread {
                         break;
             }
             //ako nista nema ispod tetr0mina
-            //pass= true;
+            //pass = true;
             if(pass){
                 updateBlock();
             }
             else{
+                //Tetr0mino se ostavlja i generise se novi
                 playerBlock.set(5, 2);
                 tetr0mino = new Tetr0mino((int)(Math.random()*7), tetrengine);
                 //tetr0mino = new Tetr0mino(1);
