@@ -1,7 +1,12 @@
 package com.filipstraka.tetr0s.Tetrengine;
 
 import android.graphics.Point;
+import android.media.MediaPlayer;
 import android.os.Vibrator;
+
+import com.filipstraka.tetr0s.R;
+
+import java.io.IOException;
 
 /**
  * Created by strak on 7.10.2017..
@@ -88,6 +93,9 @@ public class PlayerThread extends Thread {
                 }break;
         }
         if(canMove) {
+            //Play sound
+            tetrengine.soundPool.play(tetrengine.soundID_move,1,1,1,0,1);
+            //delete
             for (int i = 0; i < 4; i++) {
                 tetrengine.Map[playerBlock.x + tetr0mino.tetr0mino_normal[i].x][playerBlock.y + tetr0mino.tetr0mino_normal[i].y].setBitmap(null);
             }
@@ -107,21 +115,56 @@ public class PlayerThread extends Thread {
         }
         */
         //GORE JE STARI KOD SAMO ZA JEDAN BLOK
+        boolean canMove = true;
         switch (orientation){
             case 0:
                 if( playerBlock.x+tetr0mino.tetr0mino_normal[0].x < 9 && playerBlock.x+tetr0mino.tetr0mino_normal[1].x < 9 && playerBlock.x+tetr0mino.tetr0mino_normal[2].x < 9 && playerBlock.x+tetr0mino.tetr0mino_normal[3].x < 9){
                     //Nije Van granica
-                    for(int i=0; i<4; i++){
-                        tetrengine.Map[playerBlock.x + tetr0mino.tetr0mino_normal[i].x][playerBlock.y + tetr0mino.tetr0mino_normal[i].y].setBitmap(null);
+                    switch (tetr0mino.type){
+                        case 0:
+                            if(tetrengine.Map[playerBlock.x+2][playerBlock.y].bitmap != null || tetrengine.Map[playerBlock.x+1][playerBlock.y+1].bitmap != null){
+                                canMove=false;
+                            }break;
+                        case 1:
+                            if(tetrengine.Map[playerBlock.x+1][playerBlock.y].bitmap != null || tetrengine.Map[playerBlock.x+1][playerBlock.y+1].bitmap != null || tetrengine.Map[playerBlock.x+1][playerBlock.y-1].bitmap != null){
+                                canMove=false;
+                            }break;
+                        case 2:
+                            if(tetrengine.Map[playerBlock.x+1][playerBlock.y].bitmap != null || tetrengine.Map[playerBlock.x+2][playerBlock.y+1].bitmap != null){
+                                canMove=false;
+                            }break;
+                        case 3:
+                            if(tetrengine.Map[playerBlock.x+1][playerBlock.y].bitmap != null || tetrengine.Map[playerBlock.x+1][playerBlock.y+1].bitmap != null){
+                                canMove=false;
+                            }break;
+                        case 4:
+                            if(tetrengine.Map[playerBlock.x+2][playerBlock.y].bitmap != null || tetrengine.Map[playerBlock.x+1][playerBlock.y+1].bitmap != null){
+                                canMove=false;
+                            }break;
+                        case 5:
+                            if(tetrengine.Map[playerBlock.x+1][playerBlock.y].bitmap != null || tetrengine.Map[playerBlock.x+2][playerBlock.y+1].bitmap != null || tetrengine.Map[playerBlock.x+1][playerBlock.y-1].bitmap != null){
+                                canMove=false;
+                            }break;
+                        case 6:
+                            if(tetrengine.Map[playerBlock.x+1][playerBlock.y].bitmap != null || tetrengine.Map[playerBlock.x+1][playerBlock.y-1].bitmap != null || tetrengine.Map[playerBlock.x+1][playerBlock.y-2].bitmap != null || tetrengine.Map[playerBlock.x+1][playerBlock.y+1].bitmap != null){
+                                canMove=false;
+                            }break;
                     }
-                    playerBlock.set(playerBlock.x + 1, playerBlock.y);
-                    for(int i=0; i<4; i++){
-                        tetrengine.Map[playerBlock.x + tetr0mino.tetr0mino_normal[i].x][playerBlock.y + tetr0mino.tetr0mino_normal[i].y].setBitmap(tetr0mino.typeImage);
-
-                    }
-                }
-                break;
-
+                }else{
+                    canMove=false;
+                }break;
+        }
+        if(canMove) {
+            //Play sound
+            tetrengine.soundPool.play(tetrengine.soundID_move,1,1,1,0,1);
+            //delete
+            for (int i = 0; i < 4; i++) {
+                tetrengine.Map[playerBlock.x + tetr0mino.tetr0mino_normal[i].x][playerBlock.y + tetr0mino.tetr0mino_normal[i].y].setBitmap(null);
+            }
+            playerBlock.set(playerBlock.x + 1, playerBlock.y);
+            for (int i = 0; i < 4; i++) {
+                tetrengine.Map[playerBlock.x + tetr0mino.tetr0mino_normal[i].x][playerBlock.y + tetr0mino.tetr0mino_normal[i].y].setBitmap(tetr0mino.typeImage);
+            }
         }
         //TODO                       KOD ZA MOVE RIGHT
     }
@@ -275,11 +318,13 @@ public class PlayerThread extends Thread {
             }
             //ako nista nema ispod tetr0mina
             //pass = true;
+
             if(pass){
                 updateBlock();
             }
             else{
                 //Tetr0mino se ostavlja i generise se novi
+                tetrengine.soundPool.play(tetrengine.soundID_drop,1,1,1,0,1);
                 playerBlock.set(5, 2);
                 tetr0mino = new Tetr0mino((int)(Math.random()*7), tetrengine);
                 //tetr0mino = new Tetr0mino(1);
